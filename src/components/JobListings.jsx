@@ -7,10 +7,13 @@ const JobListings = ({ isHome = false }) => {
     const [jobs, setJobs] = useState([]);
     const [loading, setLoading] = useState(true)
 
+    const apiUrl = isHome ? '/api/jobs?_limit=3' : '/api/jobs';
+
     useEffect(() => {
         const fetchJobs = async () => {
             try {
-                const res = await fetch('http://localhost:8000/jobs'); // ?_limit=3
+                // const res = await fetch('http://localhost:8000/jobs'); // ?_limit=3
+                const res = await fetch(apiUrl);
                 const data = await res.json();
                 // console.log(data);
                 if (data.length)
@@ -18,14 +21,12 @@ const JobListings = ({ isHome = false }) => {
             } catch (error) {
                 console.log('Error fetching data', error);
             } finally {
-                setLoading(true);
+                setLoading(false);
             }
         }
         fetchJobs();
     }, [])
 
-    // console.log(jobs);
-    const listings = isHome ? jobs.slice(0, 3) : jobs;
     return (
         <section className="bg-blue-50 px-4 py-10">
             <div className="container-xl lg:container m-auto">
@@ -38,7 +39,7 @@ const JobListings = ({ isHome = false }) => {
                         <div className='text-3xl text-center'>Loading...</div>
                     </div> :
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                        {listings.map((job) => (
+                        {jobs.map((job) => (
                             <JobListing key={job.id} job={job} />
                         ))}
                     </div>}
