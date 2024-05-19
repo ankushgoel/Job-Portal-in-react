@@ -1,33 +1,14 @@
-import { useState, useEffect } from 'react'
-import { Link, useParams } from 'react-router-dom';
-import Spinner from '../components/Spinner';
+import { Link, useLoaderData } from 'react-router-dom';
+
 import { FaMapMarker, FaArrowLeft } from 'react-icons/fa';
 
 
 const JobPage = () => {
-    const { id } = useParams();
-    const [job, setJob] = useState(null);
-    const [loading, setLoading] = useState(true)
-
-    useEffect(() => {
-        const fetchJob = async () => {
-            try {
-                const res = await fetch(`/api/jobs/${id}`);
-                const data = await res.json();
-                console.log(data);
-                if (data)
-                    setJob(data);
-            } catch (error) {
-                console.log('Error fetching data', error);
-            } finally {
-                setLoading(false);
-            }
-        }
-        fetchJob();
-    }, [])
+    const job = useLoaderData();
 
     return (
-        loading ? <Spinner /> :
+        // loading ? <Spinner /> :
+        job.title ?
             <>
                 <section>
                     <div className='container m-auto py-6 px-6'>
@@ -98,7 +79,19 @@ const JobPage = () => {
                     </div>
                 </section>
             </>
+            : <div className='p-5 text-center'>Error occured while fetching job data!</div>
     )
 }
 
-export default JobPage
+const jobLoader = async ({ params }) => {
+    try {
+        const res = await fetch(`/api/jobs/${params.id}`);
+        const data = await res.json();
+        console.log(data);
+        return data;
+    } catch (error) {
+        console.log('Error fetching data', error);
+    }
+}
+
+export { JobPage as default, jobLoader }
