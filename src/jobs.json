@@ -83,6 +83,34 @@
         "contactEmail": "contact@ipsumlorem.com",
         "contactPhone": "555-555-5555"
       }
+    },
+    {
+      "id": "c97e",
+      "title": "sr dev",
+      "type": "Remote",
+      "location": "India",
+      "description": "sr mern stack dev with ssystem design",
+      "salary": "$80K - 90K",
+      "company": {
+        "name": "XYZ",
+        "description": "Xyz Company",
+        "contactEmail": "qwerty@qwerty.com",
+        "contactPhone": "456780987"
+      }
+    },
+    {
+      "id": "bc06",
+      "title": "Test job 1",
+      "type": "Full-Time",
+      "location": "France",
+      "description": "test desc, lorem ipsum, lorem ipsum, test desc, lorem ipsum, lorem ipsum, test desc, lorem ipsum, lorem ipsum, test desc, lorem ipsum, lorem ipsum",
+      "salary": "$60K - 70K",
+      "company": {
+        "name": "Test Comp 1",
+        "description": "Test comp 1 is located in france, test, lorem ipsum, lorem ipsum, test, lorem ipsum, lorem ipsum",
+        "contactEmail": "Comp1@test.com",
+        "contactPhone": "9864735477"
+      }
     }
   ]
 }
